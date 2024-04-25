@@ -9,7 +9,7 @@ exec(open(pathlib.Path("src") / pkg_name / "version.py").read())
 setup(
     name=pkg_name,
     version=__version__,
-    url="https://github.com/korjaa/kunkin",
+    url="https://github.com/korjaa/kunkin-kp184",
     author="Jaakko Korhonen",
     description="Kunkin KP184 Driver.",
     packages=find_packages("src"),
@@ -20,6 +20,7 @@ setup(
     #    ]
     #},
     install_requires=[
-        "pyserial ~= 3.5"
+        "pyserial ~= 3.5",
+        "tenacity ~= 8.2"
     ],
 )
