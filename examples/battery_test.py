@@ -6,7 +6,7 @@ from kunkin import Kp184
 
 logger = logging.getLogger(__name__)
 
-def test(load_current: float, cell_count: int, stop_voltage: float, serno: str):
+def test(load_current: float, cell_count: int, stop_voltage: float, make: str, serno: str):
     resting_time_s: int = 10
     loading_time_s: int = 5
     actual_stop_voltage = stop_voltage * cell_count
@@ -19,7 +19,7 @@ def test(load_current: float, cell_count: int, stop_voltage: float, serno: str):
         kun.set_output_on(True)
 
         log_file = pathlib.Path(
-            f"ryobi_4ah_{resting_time_s}s_{loading_time_s}s_{load_current:.0f}A_{serno}.txt")
+            f"{make}_5ah_{resting_time_s}s_{loading_time_s}s_{load_current:.0f}A_{serno}.txt")
 
         with kun.background_monitor(log_file=log_file, interval_s=0.2) as monitor:
             try:
@@ -49,7 +49,8 @@ def test(load_current: float, cell_count: int, stop_voltage: float, serno: str):
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     test(
-        load_current=10.0,
-        cell_count=5,
+        load_current=9,
+        cell_count=10,
         stop_voltage=3.1,
-        serno="297538_2016_old")
+        make="ninebot",
+        serno="36200121051004293")
