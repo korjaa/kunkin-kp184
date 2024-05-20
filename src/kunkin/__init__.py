@@ -230,7 +230,8 @@ class BackgroundMonitor:
             self._refresh()
 
             if self.log is not None:
-                self.log.writerow(self.status_block.values())
+                self.log.writerow(
+                    [self.timestamp] + list(self.status_block.values()))
 
             self._interwaller()
 
@@ -247,7 +248,7 @@ class BackgroundMonitor:
 
             # Write headers
             if not file_existed:
-                self.log.writerow(self.status_block.keys())
+                self.log.writerow(["Timestamp"] + list(self.status_block.keys()))
 
         # Start monitor thread
         self.index = 0
